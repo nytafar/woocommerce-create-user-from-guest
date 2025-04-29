@@ -1,0 +1,39 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor files
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+.komodotools
+*.tmproj
+*.tmproject
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+vendor/
+bower_components/
+
+# Build directories
+dist/
+build/
+tmp/
+
+# Misc
+.sass-cache
+.tmp
+.phpunit.result.cache
