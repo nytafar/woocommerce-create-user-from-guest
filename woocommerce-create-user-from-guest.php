@@ -290,24 +290,66 @@ class WC_Create_User_From_Guest {
             return $user_id;
         }
         
-        // Update the order's user ID.
-        $order->set_customer_id( $user_id );
-        $order->save();
-        
-        // Add order note.
-        $order->add_order_note(
-            $send_email
-            ? esc_html__( 'Customer account created and login details sent to customer.', 'woocommerce-create-user-from-guest' )
-            : esc_html__( 'Customer account created without sending login credentials.', 'woocommerce-create-user-from-guest' )
+        // Save billing address fields
+        $billing_fields = array(
+            'billing_first_name'    => $order->get_billing_first_name(),
+            'billing_last_name'     => $order->get_billing_last_name(),
+            'billing_company'       => $order->get_billing_company(),
+            'billing_address_1'     => $order->get_billing_address_1(),
+            'billing_address_2'     => $order->get_billing_address_2(),
+            'billing_city'          => $order->get_billing_city(),
+            'billing_postcode'      => $order->get_billing_postcode(),
+            'billing_country'       => $order->get_billing_country(),
+            'billing_state'         => $order->get_billing_state(),
+            'billing_phone'         => $order->get_billing_phone(),
+            'billing_email'         => $order->get_billing_email(),
         );
         
-        // Maybe send account email.
-        if ( $send_email ) {
-            wp_new_user_notification( $user_id, null, 'user' );
+        // Save shipping address fields
+        $shipping_fields = array(
+            'shipping_first_name'   => $order->get_shipping_first_name(),
+            'shipping_last_name'    => $order->get_shipping_last_name(),
+            'shipping_company'      => $order->get_shipping_company(),
+            'shipping_address_1'    => $order->get_shipping_address_1(),
+            'shipping_address_2'    => $order->get_shipping_address_2(),
+            'shipping_city'         => $order->get_shipping_city(),
+            'shipping_postcode'     => $order->get_shipping_postcode(),
+            'shipping_country'      => $order->get_shipping_country(),
+            'shipping_state'        => $order->get_shipping_state(),
+            'shipping_phone'        => $order->get_shipping_phone(),
+        );
+        
+        // Save all user meta
+        foreach ( $billing_fields as $key => $value ) {
+            if ( ! empty( $value ) ) {
+                update_user_meta( $user_id, $key, $value );
+            }
         }
         
-        return $user_id;
+        foreach ( $shipping_fields as $key => $value ) {
+            if ( ! empty( $value ) ) {
+                update_user_meta( $user_id, $key, $value );
+            }
+        }
+    
+    // Update the order's user ID.
+    $order->set_customer_id( $user_id );
+    $order->save();
+    
+    // Add order note.
+    $order->add_order_note(
+        $send_email
+        ? esc_html__( 'Customer account created with billing and shipping information. Login details sent to customer.', 'woocommerce-create-user-from-guest' )
+        : esc_html__( 'Customer account created with billing and shipping information. Login credentials not sent.', 'woocommerce-create-user-from-guest' )
+    );
+    
+    // Maybe send account email.
+    if ( $send_email ) {
+        wp_new_user_notification( $user_id, null, 'user' );
     }
+    
+    return $user_id;
+}
     
     /**
      * Generate a username from first and last name.
@@ -326,7 +368,7 @@ class WC_Create_User_From_Guest {
             'æ' => 'ae',
             'ø' => 'oe',
             'å' => 'aa',
-            'Æ' => 'ae',
+            'Æ' => 'e',
             'Ø' => 'oe',
             'Å' => 'aa'
         );
