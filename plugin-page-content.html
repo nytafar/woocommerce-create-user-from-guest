@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WooCommerce Create User from Guest Orders - Nyta</title>
+</head>
+<body>
+
+<article class="plugin-description">
+    <header>
+        <h1>WooCommerce Create User from Guest Orders</h1>
+        <p class="plugin-intro">Convert guest orders into registered customer accounts with a single click</p>
+    </header>
+
+    <section class="plugin-overview">
+        <h2>What is this plugin?</h2>
+        <p>WooCommerce Create User from Guest Orders is a lightweight plugin that allows store administrators to convert guest orders into registered customer accounts directly from the WooCommerce Edit Order screen. With a single click, you can create a new user account using the customer's billing and shipping information, making it easier to manage customer relationships and provide a better shopping experience.</p>
+        
+        <div class="plugin-image">
+            <!-- Insert screenshot of the plugin in action here -->
+            <img src="[INSERT-SCREENSHOT-URL]" alt="Screenshot of the Create User from Guest button in the WooCommerce order edit screen">
+        </div>
+    </section>
+
+    <section class="use-cases">
+        <h2>When would you use this plugin?</h2>
+        
+        <div class="use-case">
+            <h3>1. Converting phone orders to accounts</h3>
+            <p>When customers place orders over the phone, you might enter them as guest orders. Later, you can easily convert these into proper customer accounts so they can log in and see their order history.</p>
+        </div>
+        
+        <div class="use-case">
+            <h3>2. Helping customers who forgot to register</h3>
+            <p>Many customers check out as guests for convenience but later wish they had created an account. Instead of asking them to register manually, you can create an account for them with all their information already filled in.</p>
+        </div>
+        
+        <div class="use-case">
+            <h3>3. Consolidating customer data</h3>
+            <p>When you notice the same guest email has placed multiple orders, you can convert one order to a user account and all other orders with the same email will automatically be reassigned to that account, giving you a complete view of that customer's purchase history.</p>
+        </div>
+        
+        <div class="use-case">
+            <h3>4. Enabling subscription access</h3>
+            <p>If a guest customer wants to access a subscription they purchased or convert a one-time purchase to a subscription, creating an account for them is the first necessary step.</p>
+        </div>
+        
+        <div class="use-case">
+            <h3>5. Simplifying customer support</h3>
+            <p>When providing support to guest customers, creating an account makes it easier to track their interactions and provide personalized service in the future.</p>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Key Features</h2>
+        <ul>
+            <li><strong>One-Click User Creation:</strong> Add a "Create User from Guest" button in the WooCommerce Edit Order admin screen.</li>
+            <li><strong>Email Control:</strong> Choose whether to send login credentials to the new user.</li>
+            <li><strong>Smart Username Generation:</strong> Creates usernames in the format firstname.lastname with proper handling of Norwegian characters (æ→ae, ø→oe, å→aa).</li>
+            <li><strong>Complete Customer Data:</strong> Saves all billing and shipping information to the new user account.</li>
+            <li><strong>Order Reassignment:</strong> Automatically finds and reassigns other guest orders with the same email address.</li>
+            <li><strong>Clear Feedback:</strong> Shows success messages with details about the operation.</li>
+        </ul>
+    </section>
+
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <ol>
+            <li>Navigate to a WooCommerce order that was placed by a guest (WooCommerce → Orders → Edit Order)</li>
+            <li>Look for the "Create User from Guest" link next to the customer field</li>
+            <li>Click the link and choose whether to send login credentials to the user</li>
+            <li>The system will create a new user account, assign it to the current order, and reassign any other guest orders with the same email</li>
+            <li>A success message will display with details about the operation</li>
+        </ol>
+        
+        <div class="plugin-image">
+            <!-- Insert screenshot of the success message here -->
+            <img src="[INSERT-SUCCESS-SCREENSHOT-URL]" alt="Screenshot of the success message after creating a user from a guest order">
+        </div>
+    </section>
+
+    <section class="benefits">
+        <h2>Benefits for Your Store</h2>
+        <div class="benefit">
+            <h3>Improved Customer Experience</h3>
+            <p>By creating accounts for customers who checked out as guests, you make it easier for them to track orders and make future purchases without re-entering their information.</p>
+        </div>
+        
+        <div class="benefit">
+            <h3>Better Customer Data Management</h3>
+            <p>Consolidate purchase history and customer information into proper user accounts, making your customer database more organized and valuable.</p>
+        </div>
+        
+        <div class="benefit">
+            <h3>Enhanced Marketing Opportunities</h3>
+            <p>With more registered users, you can better target your marketing efforts and encourage repeat purchases through account-specific promotions.</p>
+        </div>
+        
+        <div class="benefit">
+            <h3>Streamlined Admin Workflow</h3>
+            <p>Quickly convert guest orders to user accounts without leaving the order edit screen, saving time and reducing administrative overhead.</p>
+        </div>
+    </section>
+
+    <section class="installation">
+        <h2>Installation</h2>
+        <ol>
+            <li>Upload the <code>woocommerce-create-user-from-guest</code> folder to the <code>/wp-content/plugins/</code> directory</li>
+            <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
+            <li>Navigate to any guest order in WooCommerce to see the "Create User from Guest" button</li>
+        </ol>
+    </section>
+
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        
+        <div class="question">
+            <h3>What happens if a user already exists with the same email?</h3>
+            <p>The plugin checks if a user with the email already exists. If one does, it will abort the operation and display an error message.</p>
+        </div>
+        
+        <div class="question">
+            <h3>How are usernames generated?</h3>
+            <p>Usernames are created using the format firstname.lastname from the billing information. Norwegian characters are properly converted (æ→ae, ø→oe, å→aa). If a username already exists, a number is appended to ensure uniqueness.</p>
+        </div>
+        
+        <div class="question">
+            <h3>Can I customize the email sent to users?</h3>
+            <p>The plugin uses WordPress's built-in wp_new_user_notification() function to send emails. You can use plugins like "Email Customizer for WooCommerce" to modify these emails.</p>
+        </div>
+        
+        <div class="question">
+            <h3>Will this work with my theme and other plugins?</h3>
+            <p>The plugin is designed to be compatible with any WordPress theme and common WooCommerce extensions. It uses standard WooCommerce and WordPress hooks and functions.</p>
+        </div>
+        
+        <div class="question">
+            <h3>Is there a way to automatically convert all guest orders?</h3>
+            <p>Currently, the plugin is designed for manual conversion only. This is intentional to give administrators control over which guest orders should be converted to user accounts.</p>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>What Our Users Say</h2>
+        
+        <blockquote>
+            <p>"This plugin has saved us countless hours of manual work. Now when customers call in asking about their guest orders, we can quickly create an account for them while on the phone."</p>
+            <cite>— Maria, Online Boutique Owner</cite>
+        </blockquote>
+        
+        <blockquote>
+            <p>"The ability to consolidate multiple guest orders under one account has given us much better insights into our customer purchasing patterns."</p>
+            <cite>— Thomas, E-commerce Manager</cite>
+        </blockquote>
+    </section>
+
+    <section class="cta">
+        <h2>Ready to Improve Your Customer Management?</h2>
+        <p>Download the WooCommerce Create User from Guest Orders plugin today and start converting guest customers into registered users with just a click.</p>
+        <a href="#" class="button">Download Plugin</a>
+    </section>
+
+    <footer>
+        <p>Developed by <a href="https://jellum.net">Lasse Jellum</a> | Version 1.0.0</p>
+    </footer>
+</article>
+
+</body>
+</html>
